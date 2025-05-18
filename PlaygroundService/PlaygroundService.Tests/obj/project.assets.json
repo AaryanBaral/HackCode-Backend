@@ -983,11 +983,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Tests/PlaygroundService.Tests.csproj",
+      "projectUniqueName": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Tests/PlaygroundService.Tests.csproj",
       "projectName": "PlaygroundService.Tests",
-      "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Tests/PlaygroundService.Tests.csproj",
+      "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Tests/PlaygroundService.Tests.csproj",
       "packagesPath": "/Users/aaryanbaral/.nuget/packages/",
-      "outputPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Tests/obj/",
+      "outputPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/aaryanbaral/.nuget/NuGet/NuGet.Config"
@@ -1002,11 +1002,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Application/PlaygroundService.Application.csproj": {
-              "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Application/PlaygroundService.Application.csproj"
+            "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Application/PlaygroundService.Application.csproj": {
+              "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Application/PlaygroundService.Application.csproj"
             },
-            "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj": {
-              "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj"
+            "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj": {
+              "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj"
             }
           }
         }

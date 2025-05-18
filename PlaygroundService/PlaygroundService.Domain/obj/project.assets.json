@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj",
+      "projectUniqueName": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj",
       "projectName": "PlaygroundService.Domain",
-      "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj",
+      "projectPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Domain/PlaygroundService.Domain.csproj",
       "packagesPath": "/Users/aaryanbaral/.nuget/packages/",
-      "outputPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/PlaygroundService/PlaygroundService.Domain/obj/",
+      "outputPath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/aaryanbaral/.nuget/NuGet/NuGet.Config"

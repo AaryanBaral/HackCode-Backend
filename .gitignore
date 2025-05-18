@@ -1,0 +1,91 @@
+# Ignore build output
+bin/
+obj/
+out/
+
+# Ignore user-specific files
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.vs/
+.vscode/
+.idea/
+
+# Ignore test result files
+*.trx
+TestResults/
+*.coverage
+*.coveragexml
+
+# Ignore logs
+*.log
+logs/
+
+# Ignore NuGet packages and lock files
+*.nupkg
+packages/
+.nuget/
+project.lock.json
+project.assets.json
+PackageLock.json
+
+# Ignore build artifacts
+*.dll
+*.exe
+*.pdb
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+
+# Ignore secrets
+secrets.json
+*.key
+*.pem
+*.crt
+
+# Ignore Docker-related
+**/Dockerfile.*
+**/docker-compose*.yml
+.docker/
+docker-compose.override.yml
+
+# Ignore published files
+publish/
+artifacts/
+
+# Ignore Rider
+.idea/
+
+# Ignore Visual Studio Code
+.vscode/
+
+# Ignore ReSharper
+*.DotSettings.user
+_ReSharper*/
+
+# Ignore OS-specific
+Thumbs.db
+.DS_Store
+
+# Ignore generated files for migrations
+**/Migrations/
+
+# Ignore generated launch.json/task.json for VSCode
+.vscode/launch.json
+.vscode/tasks.json
+
+# Ignore coverage tools
+coverage/
+lcov.info
+
+# Ignore user config for dotnet CLI
+*.dbmdl
+*.db
+
+# Ignore generated proto files (if using gRPC)
+**/*.pb.cs
+**/*.grpc.cs
+
