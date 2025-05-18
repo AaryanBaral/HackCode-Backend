@@ -1,0 +1,15 @@
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.AssemblyInfoInputs.cache
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.AssemblyInfo.cs
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.csproj.CoreCompileInputs.cache
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/bin/Debug/net9.0/QuestionService.Domain.deps.json
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/bin/Debug/net9.0/QuestionService.Domain.dll
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/bin/Debug/net9.0/QuestionService.Domain.pdb
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.AssemblyInfoInputs.cache
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.AssemblyInfo.cs
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.csproj.CoreCompileInputs.cache
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.dll
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/refint/QuestionService.Domain.dll
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.pdb
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/ref/QuestionService.Domain.dll

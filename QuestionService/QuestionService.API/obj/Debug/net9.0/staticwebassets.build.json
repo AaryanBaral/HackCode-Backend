@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "ec97KXz00aai9m/LQnBsyPXHM5TQ+YgmOxQs4AQHW3w=",
+  "Source": "QuestionService.API",
+  "BasePath": "_content/QuestionService.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
