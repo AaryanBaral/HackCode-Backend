@@ -1,0 +1,45 @@
+
+# Step 2: Create the solution file
+dotnet new sln -n LanguageService
+
+
+
+# Step 3: Create the LanguageService
+dotnet new webapi -n LanguageService.API
+dotnet new classlib -n LanguageService.Application
+dotnet new classlib -n LanguageService.Domain
+dotnet new classlib -n LanguageService.Infrastructure
+dotnet new xunit -n LanguageService.Tests
+
+
+
+# Step 4: Add folders inside the LanguageService
+mkdir -p LanguageService.API/{Controllers,Hubs,Middlewares,ExceptionHandling,Extensions}
+mkdir -p LanguageService.Application/{Interfaces,Services,DTOs,SignalR}
+mkdir -p LanguageService.Domain/{Entities,ValueObjects,Enums}
+mkdir -p LanguageService.Infrastructure/{Kafka,Persistence,Repository,DockerSandbox,SignalR}
+
+
+
+# Step 5: Add project references
+dotnet add LanguageService.API/LanguageService.API.csproj reference LanguageService.Application/LanguageService.Application.csproj
+dotnet add LanguageService.API/LanguageService.API.csproj reference LanguageService.Infrastructure/LanguageService.Infrastructure.csproj
+dotnet add LanguageService.Application/LanguageService.Application.csproj reference LanguageService.Domain/LanguageService.Domain.csproj
+dotnet add LanguageService.Infrastructure/LanguageService.Infrastructure.csproj reference LanguageService.Application/LanguageService.Application.csproj
+dotnet add LanguageService.Infrastructure/LanguageService.Infrastructure.csproj reference LanguageService.Domain/LanguageService.Domain.csproj
+dotnet add LanguageService.Tests/LanguageService.Tests.csproj reference LanguageService.Application/LanguageService.Application.csproj
+dotnet add LanguageService.Tests/LanguageService.Tests.csproj reference LanguageService.Domain/LanguageService.Domain.csproj
+
+
+
+# Step 6: Add all LanguageService to the solution
+dotnet sln add LanguageService.API/LanguageService.API.csproj
+dotnet sln add LanguageService.Application/LanguageService.Application.csproj
+dotnet sln add LanguageService.Domain/LanguageService.Domain.csproj
+dotnet sln add LanguageService.Infrastructure/LanguageService.Infrastructure.csproj
+dotnet sln add LanguageService.Tests/LanguageService.Tests.csproj
+
+
+
+
+

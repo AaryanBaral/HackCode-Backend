@@ -13,3 +13,4 @@
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/refint/QuestionService.Domain.dll
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.pdb
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/ref/QuestionService.Domain.dll
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Domain/obj/Debug/net9.0/QuestionService.Domain.sourcelink.json

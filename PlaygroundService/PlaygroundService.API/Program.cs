@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Diagnostics;
-using PlaygroundService.Infrastructure.Configurations.Database;
-using PlaygroundService.Infrastructure.Configurations.Jwt;
+using PlaygroundService.API.Extensions;
+using PlaygroundService.Infrastructure.SignalR.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddAppServices(builder.Configuration);
 var app = builder.Build();
-
 // app.UseMiddleware<DbTransactionMiddleware>(); 
 
 // Configure the HTTP request pipeline.
@@ -21,15 +20,13 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.MapGet("/", () => "HackCode is working bitchessssss!");
 
-
-
+app.MapHub<TerminalHub>("/terminalHub");
 
 app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 
 app.UseCors("AllowAny");
-await app.Services.InitializeDbAsync();
 app.UseExceptionHandler(handler =>
 {
     handler.Run(async context =>
@@ -45,5 +42,5 @@ app.UseExceptionHandler(handler =>
         }
     });
 });
-app.Run();
+await app.RunAsync();
 

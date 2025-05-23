@@ -17,3 +17,4 @@
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Infrastructure/obj/Debug/net9.0/QuestionService.Infrastructure.pdb
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Infrastructure/obj/Debug/net9.0/QuestionService.Infrastructure.genruntimeconfig.cache
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Infrastructure/obj/Debug/net9.0/ref/QuestionService.Infrastructure.dll
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.Infrastructure/obj/Debug/net9.0/QuestionService.Infrastructure.sourcelink.json
