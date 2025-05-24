@@ -29,6 +29,8 @@ namespace LanguageService.Infrastructure.Kafka.Producer
 
         public async Task ProduceAsync<T>(string topic, T message, string correlationID)
         {
+            Console.WriteLine("Inside Producer");
+            Console.WriteLine(JsonSerializer.Serialize(message));
             var kafkaMessage = new Message<Null, string>()
             {
                 Value = JsonSerializer.Serialize(message),

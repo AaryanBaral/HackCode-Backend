@@ -1,4 +1,7 @@
 using LanguageService.API.ExceptionHandling;
+using LanguageService.Application.Interfaces;
+using LanguageService.Application.Interfaces.Kafka;
+using LanguageService.Application.Services;
 using LanguageService.Infrastructure.Configurations.Database;
 using LanguageService.Infrastructure.Configurations.Jwt;
 using LanguageService.Infrastructure.DependencyInjection;
@@ -16,6 +19,7 @@ namespace LanguageService.API.Extensions
             services.AddDatabase(configuration, environment);
             services.AddCorsConfiguration();
             services.AddSingleton<IExceptionHandler,GlobalExceptionHandling>();
+            services.AddScoped<IKafkaService, KafkaService>();
 
         }
 

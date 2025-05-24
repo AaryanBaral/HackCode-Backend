@@ -83,7 +83,7 @@ namespace PlaygroundService.Infrastructure.Services.Container
             var languageResponse = await _languageGetter.GetLanguage(language);
             var response = await client.Containers.CreateContainerAsync(new CreateContainerParameters
             {
-                Image = languageResponse.Language.DockerImage,
+                Image = languageResponse.Data.DockerImage,
                 Cmd = new[] { "/bin/bash" },
                 HostConfig = new HostConfig
                 {

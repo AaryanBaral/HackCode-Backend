@@ -8,7 +8,7 @@ namespace LanguageService.API.Controllers
 {
     [Route("api/[controller]")]
 
-    public class LanguageController(ILogger<LanguageController> logger, ILanguageService service) : Controller
+    public class LanguageController(ILogger<LanguageController> logger, ILanguageService service) : ControllerBase
     {
         private readonly ILogger<LanguageController> _logger = logger;
         private readonly ILanguageService _service = service;

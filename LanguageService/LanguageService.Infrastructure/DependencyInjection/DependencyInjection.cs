@@ -22,7 +22,7 @@ namespace LanguageService.Infrastructure.DependencyInjection
             service.AddScoped<ILanguageService, LanguageServiceProvider>();
         }
 
-        public static void AddKafka(this IServiceCollection services, IConfiguration configuration)
+        private static void AddKafka(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddHostedService<KafkaConsumerHostedService>();
             services.Configure<KafkaOption>(configuration.GetSection("kafka"));

@@ -26,6 +26,7 @@ namespace LanguageService.Infrastructure.Repository
         }
         public async Task<Language?> GetLanguageByName(string name)
         {
+
             return await _context.Languages.Where(l => l.Name == name).FirstOrDefaultAsync();
 
         }

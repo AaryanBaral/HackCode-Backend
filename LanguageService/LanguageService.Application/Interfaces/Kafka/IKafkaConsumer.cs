@@ -7,6 +7,6 @@ namespace LanguageService.Application.Interfaces.Kafka
 {
     public interface IKafkaConsumer
     {
-        void ConsumeAsync(CancellationToken cancellationToken);
+        Task ConsumeAsync(CancellationToken cancellationToken);
     }
 }
