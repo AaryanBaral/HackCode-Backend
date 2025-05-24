@@ -33,11 +33,10 @@ namespace PlaygroundService.Infrastructure.Command
         {
             var languageResponse = await _languageGetter.GetLanguage(language);
             var outputBuilder = new System.Text.StringBuilder();
-
             // Compile if required
-            if (!string.IsNullOrEmpty(languageResponse.Data.CompileCommand))
+            if (!string.IsNullOrEmpty(languageResponse.CompileCommand))
             {
-                var compileCommand = languageResponse.Data.CompileCommand.Replace("{file}", fileName);
+                var compileCommand = languageResponse.CompileCommand.Replace("{file}", fileName);
                 var compileOutput = await ExecuteCommandAsync(containerId, compileCommand, cancellationToken);
                 outputBuilder.AppendLine(compileOutput);
                 if (compileOutput.Contains("error", StringComparison.OrdinalIgnoreCase))
@@ -47,7 +46,7 @@ namespace PlaygroundService.Infrastructure.Command
             }
 
             // Execute
-            var executeCommand = languageResponse.Data.ExecuteCommand.Replace("{file}", fileName);
+            var executeCommand = languageResponse.ExecuteCommand.Replace("{file}", fileName);
             var executeOutput = await ExecuteCommandAsync(containerId, executeCommand, cancellationToken);
             outputBuilder.AppendLine(executeOutput);
 
