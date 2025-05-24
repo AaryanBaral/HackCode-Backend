@@ -5,7 +5,7 @@ namespace PlaygroundService.Application.Interfaces.LanguageGetter
 {
     public interface ILanguageGetter
     {
-        Task<GetLanguageResponse> GetLanguage(string language);
+        Task<ReadLanguageDto> GetLanguage(string language);
         Task<bool> KafkaTest();
     }
 }

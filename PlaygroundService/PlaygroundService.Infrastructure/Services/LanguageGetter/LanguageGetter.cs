@@ -11,17 +11,16 @@ namespace PlaygroundService.Infrastructure.Services.LanguageGetter
         private readonly IKafkaConsumer _consumer = consumer;
         private readonly IKafkaProducer _producer = producer;
 
-        public async Task<GetLanguageResponse> GetLanguage(string language)
+        public async Task<ReadLanguageDto> GetLanguage(string language)
         {
             if (language is null) throw new NullReferenceException(nameof(language));
             var correlationId = Guid.NewGuid().ToString() ?? throw new NullReferenceException("the guid is generated null");
             var request = new GetLanguageRequest { Name = language, CorrelationID = correlationId };
             var awaitTask = _consumer.WaitForLanguageResponseAsync(correlationId);
-            Console.WriteLine($"ProducedCorrelationId {correlationId}");
             await _producer.ProduceAsync(KafkaTopics.GetLanguageByName, request, correlationId);
             var languageResponse = await awaitTask;
-            Console.WriteLine(JsonSerializer.Serialize(languageResponse));
-            return languageResponse;
+            if (languageResponse.Data is null) throw new NullReferenceException(nameof(languageResponse.Data));
+            return languageResponse.Data;
         }
 
         public async Task<bool> KafkaTest()

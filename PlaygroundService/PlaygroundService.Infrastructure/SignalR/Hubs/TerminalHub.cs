@@ -19,7 +19,7 @@ namespace PlaygroundService.Infrastructure.SignalR.Hubs
             var userId = Context.UserIdentifier ?? Context.ConnectionId;
             var languageResponse = await _languageGetter.GetLanguage(language);
             var session = await _containerManager.GetOrCreateSandboxAsync(userId, language, Context.ConnectionAborted);
-            var fileName = $"main{languageResponse.Data.FileExtension}";
+            var fileName = $"main{languageResponse.FileExtension}";
             await _commandExecutor.WriteCodeAsync(session.ContainerId, fileName, code, Context.ConnectionAborted);
             var output = await _commandExecutor.ExecuteCodeAsync(session.ContainerId, language, fileName, Context.ConnectionAborted);
             await Clients.Caller.SendAsync("ReceiveOutput", output);
