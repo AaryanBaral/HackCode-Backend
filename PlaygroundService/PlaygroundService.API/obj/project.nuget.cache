@@ -1,9 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "5v96IWYCqQc=",
+  "dgSpecHash": "xuCFpbj8I+4=",
   "success": true,
   "projectFilePath": "/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/PlaygroundService/PlaygroundService.API/PlaygroundService.API.csproj",
   "expectedPackageFiles": [
+    "/Users/aaryanbaral/.nuget/packages/confluent.kafka/2.10.0/confluent.kafka.2.10.0.nupkg.sha512",
+    "/Users/aaryanbaral/.nuget/packages/docker.dotnet/3.125.15/docker.dotnet.3.125.15.nupkg.sha512",
+    "/Users/aaryanbaral/.nuget/packages/librdkafka.redist/2.10.0/librdkafka.redist.2.10.0.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.3.0/microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/9.0.5/microsoft.aspnetcore.authentication.jwtbearer.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.aspnetcore.authorization/2.3.0/microsoft.aspnetcore.authorization.2.3.0.nupkg.sha512",
@@ -29,10 +32,10 @@
     "/Users/aaryanbaral/.nuget/packages/microsoft.entityframeworkcore/9.0.5/microsoft.entityframeworkcore.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.entityframeworkcore.abstractions/9.0.5/microsoft.entityframeworkcore.abstractions.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.entityframeworkcore.analyzers/9.0.5/microsoft.entityframeworkcore.analyzers.9.0.5.nupkg.sha512",
-    "/Users/aaryanbaral/.nuget/packages/microsoft.entityframeworkcore.relational/9.0.1/microsoft.entityframeworkcore.relational.9.0.1.nupkg.sha512",
+    "/Users/aaryanbaral/.nuget/packages/microsoft.entityframeworkcore.relational/9.0.5/microsoft.entityframeworkcore.relational.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.caching.abstractions/9.0.5/microsoft.extensions.caching.abstractions.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.caching.memory/9.0.5/microsoft.extensions.caching.memory.9.0.5.nupkg.sha512",
-    "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.1/microsoft.extensions.configuration.abstractions.9.0.1.nupkg.sha512",
+    "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.5/microsoft.extensions.configuration.abstractions.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.5/microsoft.extensions.dependencyinjection.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.5/microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.extensions.diagnostics.abstractions/8.0.1/microsoft.extensions.diagnostics.abstractions.8.0.1.nupkg.sha512",
@@ -51,7 +54,7 @@
     "/Users/aaryanbaral/.nuget/packages/microsoft.identitymodel.tokens/8.0.1/microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.net.http.headers/2.3.0/microsoft.net.http.headers.2.3.0.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
-    "/Users/aaryanbaral/.nuget/packages/newtonsoft.json/11.0.2/newtonsoft.json.11.0.2.nupkg.sha512",
+    "/Users/aaryanbaral/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/npgsql/9.0.3/npgsql.9.0.3.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/npgsql.entityframeworkcore.postgresql/9.0.4/npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/system.buffers/4.6.0/system.buffers.4.6.0.nupkg.sha512",
@@ -60,18 +63,8 @@
     "/Users/aaryanbaral/.nuget/packages/system.net.websockets.websocketprotocol/5.1.0/system.net.websockets.websocketprotocol.5.1.0.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/system.reflection.emit/4.7.0/system.reflection.emit.4.7.0.nupkg.sha512",
     "/Users/aaryanbaral/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512",
-    "/Users/aaryanbaral/.nuget/packages/system.threading.channels/8.0.0/system.threading.channels.8.0.0.nupkg.sha512"
+    "/Users/aaryanbaral/.nuget/packages/system.threading.channels/8.0.0/system.threading.channels.8.0.0.nupkg.sha512",
+    "/Users/aaryanbaral/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'Newtonsoft.Json' 11.0.2 has a known high severity vulnerability, https://github.com/advisories/GHSA-5crp-9r3c-p9vr",
-      "libraryId": "Newtonsoft.Json",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  "logs": []
 }

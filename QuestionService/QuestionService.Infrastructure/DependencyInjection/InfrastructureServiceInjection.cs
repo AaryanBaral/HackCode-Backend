@@ -32,12 +32,11 @@ namespace QuestionService.Infrastructure.DependencyInjection
             //  so that it can be accessed using Ioption anywahere over the app
             services.Configure<KafkaOption>(configuration.GetSection("kafka"));
 
-            services.AddSingleton<IKafkaProducer,KafkaProducer>();
-            services.AddSingleton<IKafkaConsumer,KafkaConsumer>();
+            services.AddSingleton<IKafkaProducer, KafkaProducer>();
+            services.AddSingleton<IKafkaConsumer, KafkaConsumer>();
             string[] kafkaTopics = ["validateUserID-request", "other-topic"];
             services.AddSingleton(kafkaTopics);
         }
-
         private static IServiceCollection AddRepository(this IServiceCollection service)
         {
             service.AddScoped<IQuestionRepository, QuestionRepository>();

@@ -84,3 +84,4 @@
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.API/obj/Debug/net9.0/QuestionService.API.pdb
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.API/obj/Debug/net9.0/QuestionService.API.genruntimeconfig.cache
 /Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.API/obj/Debug/net9.0/ref/QuestionService.API.dll
+/Users/aaryanbaral/Desktop/All-Folder/coding/dotnet/HackCode-Microservice/QuestionService/QuestionService.API/obj/Debug/net9.0/QuestionService.API.sourcelink.json

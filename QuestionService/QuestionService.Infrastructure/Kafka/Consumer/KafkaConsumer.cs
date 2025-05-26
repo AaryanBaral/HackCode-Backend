@@ -62,6 +62,7 @@ namespace QuestionService.Infrastructure.Kafka.Consumer
                         ?? throw new ArgumentNullException("The givan value is null for validating user");
                         if (_userIDResponses.TryRemove(correlationIDString, out var tcs))
                         {
+                            tcs.SetResult(message);
                         }
                         break;
 

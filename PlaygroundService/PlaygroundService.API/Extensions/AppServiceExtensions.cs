@@ -1,5 +1,8 @@
+using PlaygroundService.Application.Interfaces.Playground;
+using PlaygroundService.Application.Services.Playground;
 using PlaygroundService.Infrastructure.Configurations.Database;
 using PlaygroundService.Infrastructure.Configurations.Jwt;
+using PlaygroundService.Infrastructure.DependencyInjection;
 
 namespace PlaygroundService.API.Extensions
 {
@@ -7,10 +10,12 @@ namespace PlaygroundService.API.Extensions
     {
         public static void AddAppServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddJwtAuthentication(configuration);
             services.AddDatabase(configuration);
             services.AddCorsConfiguration();
-
+            services.AddInfrastructure(configuration);
+            services.AddSignalR();
+            services.AddControllers();
+            services.AddScoped<IPlaygroundService, PlaygroundServiceProvider>();
         }
 
         private static void AddCorsConfiguration(this IServiceCollection services)

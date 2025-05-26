@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PlaygroundService.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cfbe205bd7138ca08aee0479e8388af51e271e6d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b0820a7bf9ece9e45178c484a70a7cdabb40da39")]
 [assembly: System.Reflection.AssemblyProductAttribute("PlaygroundService.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PlaygroundService.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

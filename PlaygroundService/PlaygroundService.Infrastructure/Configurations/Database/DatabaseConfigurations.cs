@@ -8,13 +8,6 @@ namespace PlaygroundService.Infrastructure.Configurations.Database
 {
     public  static class DatabaseConfigurations
     {
-        
-        public static async Task InitializeDbAsync(this IServiceProvider serviceProvider)
-        {
-            using var scope = serviceProvider.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            await dbContext.Database.MigrateAsync();
-        }
 
         public static IServiceCollection AddDatabase(
             this IServiceCollection services,
