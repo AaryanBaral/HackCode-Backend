@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using UserService.Domain.Entities;
 using UserService.Application.Interfaces;
 using UserService.Application.DTOs;
+using UserService.Infrastructure.Identity;
 
 namespace UserService.Controllers
 {
@@ -10,9 +11,9 @@ namespace UserService.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UserManager<User> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly IAuthService _authService;
-        public AuthController(IAuthService authService, UserManager<User> userManager)
+        public AuthController(IAuthService authService, UserManager<ApplicationUser> userManager)
         {
             _authService = authService;
             _userManager = userManager;
@@ -20,19 +21,31 @@ namespace UserService.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
-                 var result = await _authService.RegisterAsync(registerDto);
-                 return Ok(result.IsSuccess);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
             }
+            var result = await _authService.RegisterAsync(registerDto);
+            if (result.IsSuccess == false)
+            {
+                return BadRequest(result.Errors);
+            }
+            return Ok(result.IsSuccess + result.Token + result.Role);
         }
 
-        // // POST: api/auth/login
-        // [HttpPost("login")]
-        // public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
-        // {
-        // }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
+        {
+            var result = await _authService.LoginAsync(loginDto);
+
+            if (result == null)
+            {
+                return Unauthorized(new { message = "Invalid email or password." });
+            }
+
+            return Ok(result); // returns token and role
+        }
     }
+}
 

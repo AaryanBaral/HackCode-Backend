@@ -22,18 +22,26 @@ namespace UserService.Infrastructure.Repository
         public async Task<User> GetUserByEmailAsync(string email)
         {
             var appUser = await _userManager.Users.FirstOrDefaultAsync(u => u.Email == email);
+            if (appUser == null)
+            {
+                return null;
+            }
             return appUser.ToDomainUser();
         }
 
         public async Task<User?> CreateUserAsync(User user, string password)
         {
-            // Map domain User to ApplicationUser
             var appUser = user.ToApplicationUser();
 
             var result = await _userManager.CreateAsync(appUser, password);
 
             if (!result.Succeeded)
+            {
+                 var errors = string.Join("; ", result.Errors.Select(e => e.Description));
+        Console.WriteLine($"Failed to create user. Username: {appUser.UserName}, Email: {appUser.Email}. Errors: {errors}");
                 return null;
+            }
+                
 
             return appUser.ToDomainUser();
         }

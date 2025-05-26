@@ -47,10 +47,8 @@ namespace UserService.Infrastructure.Mappers
         {
             return new ApplicationUser
             {
-                Id = domainUser.Id,
                 UserName = domainUser.UserName,
-                Email = domainUser.Email,
-                Role = domainUser.Role,
+                Email = domainUser.Email,   
                 CreatedAt = domainUser.CreatedAt
             };
         }
