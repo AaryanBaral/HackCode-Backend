@@ -39,6 +39,14 @@ namespace QuestionService.Infrastructure.Repository
             return [.. question.Select(q => q.ToReadQuestionDto())];
         }
 
+        public async Task<bool> UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id)
+        {
+            var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
+            question.UpdateQuestion(updateQuestionDto);
+            await _context.SaveChangesAsync();
+            return true;   
+        }
+
 
     }
 }

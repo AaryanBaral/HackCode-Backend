@@ -7,11 +7,11 @@ using QuestionService.Application.Interfaces.Repository;
 
 namespace QuestionService.Application.Services
 {
- public class QuestionServices(IKafkaProducer producer, IKafkaConsumer responseConsumer, IQuestionRepository repository):IQuestionService
+    public class QuestionServices(IKafkaProducer producer, IKafkaConsumer responseConsumer, IQuestionRepository repository) : IQuestionService
     {
-        private  readonly IKafkaProducer _producer = producer;
-        private  readonly IKafkaConsumer _responseConsumer = responseConsumer;
-        private  readonly IQuestionRepository _repository = repository;
+        private readonly IKafkaProducer _producer = producer;
+        private readonly IKafkaConsumer _responseConsumer = responseConsumer;
+        private readonly IQuestionRepository _repository = repository;
         public async Task<bool> AddQuestionAsync(AddQuestionDto addQuestionDto, string userID)
 
         {
@@ -30,15 +30,22 @@ namespace QuestionService.Application.Services
                 throw new KeyNotFoundException($"Given UserId is not valid {response.Message}");
             }
 
-            
+
             await _repository.CreateQuestion(addQuestionDto, userID);
 
             return true;
         }
 
-        public async Task<bool> TestKafka (){
-            await _producer.ProduceAsync("kafka-test","this message is produced by QuestionService","blabla");
+        public async Task<bool> TestKafka()
+        {
+            await _producer.ProduceAsync("kafka-test", "this message is produced by QuestionService", "blabla");
+            return true;
+        }
+
+        public async Task<bool> UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id)
+        {
+            await _repository.UpdateQuestion(updateQuestionDto, id);
             return true;
         }
     }
-}
+} 

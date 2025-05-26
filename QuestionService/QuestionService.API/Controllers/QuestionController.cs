@@ -1,4 +1,3 @@
-using System.Net;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuestionService.Application.DTOs.QuestionDto;
@@ -49,6 +48,17 @@ public class QuestionController : ControllerBase
     public IActionResult ProtectedRoute()
     {
         return Ok("you are authorized.");
+    }
+
+    [HttpPatch]
+    [Route("update")]
+    public async Task<IActionResult> UpdateQuestion([FromQuery] string id, [FromBody] UpdateQuestionDto updateQuestionDto)
+    {
+        await _questionService.UpdateQuestion(updateQuestionDto, id);
+        return Ok(new APIResponse<string>()
+        {
+            Data = "Question Updated successfully"
+        });
     }
 
 }

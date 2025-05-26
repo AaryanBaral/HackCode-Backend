@@ -10,5 +10,6 @@ namespace QuestionService.Application.Interfaces
     {
         Task<bool> AddQuestionAsync(AddQuestionDto addQuestionDto, string userID);
         Task<bool> TestKafka();
+        Task<bool> UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id);
     }
 }

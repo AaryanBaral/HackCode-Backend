@@ -9,5 +9,6 @@ namespace QuestionService.Application.Interfaces.Repository
         Task<ReadQuestionDto> GetFullQuestionById(string questionId);
         Task<List<ReadAbstractQuestionDto>> GetAllAbstractQuestion(string questionId);
         Task<List<ReadQuestionDto>> GetFullQuestion();
+        Task<bool> UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id);
     }
 }
