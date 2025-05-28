@@ -27,15 +27,20 @@ namespace QuestionService.Infrastructure.Repository
             var question = await _context.Questions.FindAsync(questionId) ?? throw new KeyNotFoundException("Given Question Id is not valid");
             return question.ToReadQuestionDto();
         }
-        public async Task<List<ReadAbstractQuestionDto>> GetAllAbstractQuestion(string questionId)
+        public async Task<List<ReadAbstractQuestionDto>> GetAllAbstractQuestion()
         {
-            var question = await _context.Questions.ToListAsync() ?? throw new NullReferenceException("No Questions available");
+            var question = await _context.Questions.ToListAsync();
+            if (question.Count == 0)
+                throw new NullReferenceException(nameof(question));
+
             return [.. question.Select(q => q.ToReadAbstractQuestionDto())];
         }
 
-        public async Task<List<ReadQuestionDto>> GetFullQuestion()
+        public async Task<List<ReadQuestionDto>> GetFullQuestions()
         {
-            var question = await _context.Questions.ToListAsync() ?? throw new KeyNotFoundException("Given Question Id is not valid");
+            var question = await _context.Questions.ToListAsync();
+            if (question.Count == 0)
+                throw new NullReferenceException(nameof(question));
             return [.. question.Select(q => q.ToReadQuestionDto())];
         }
 
@@ -44,7 +49,23 @@ namespace QuestionService.Infrastructure.Repository
             var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
             question.UpdateQuestion(updateQuestionDto);
             await _context.SaveChangesAsync();
-            return true;   
+            return true;
+        }
+
+        public async Task<bool> DeleteQuestion(string id)
+        {
+            var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
+            question.IsDeleted = true;
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<bool> DeleteQuestionPermanently(string id)
+        {
+            var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
+            _context.Questions.Remove(question);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
 

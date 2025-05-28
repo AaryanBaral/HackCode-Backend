@@ -2,8 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using QuestionService.Application.DTOs.QuestionDto;
 using QuestionService.Application.DTOs.ResponseDto;
-using QuestionService.Application.Interfaces;
-using QuestionService.Infrastructure.Persistence;
+using QuestionService.Application.Interfaces.Service;
 
 namespace QuestionService.API.Controllers;
 
@@ -11,15 +10,11 @@ namespace QuestionService.API.Controllers;
 [Route("api/[controller]")]
 public class QuestionController : ControllerBase
 {
-    private readonly AppDbContext _context;
     private readonly IQuestionService _questionService;
-    private readonly IConfiguration _configuration;
 
-    public QuestionController(AppDbContext context, IQuestionService questionService, IConfiguration Configuration)
+    public QuestionController(IQuestionService questionService)
     {
-        _context = context;
         _questionService = questionService;
-        _configuration = Configuration;
     }
 
     [HttpPost("add")]
@@ -60,5 +55,61 @@ public class QuestionController : ControllerBase
             Data = "Question Updated successfully"
         });
     }
+
+    [HttpGet]
+    [Route("abstract")]
+    public async Task<IActionResult> GetAbstractQuestionById()
+    {
+        var question = await _questionService.GetAllAbstractQuestion();
+        return Ok(new APIResponse<List<ReadAbstractQuestionDto>>()
+        {
+            Data = question
+        });
+    }
+
+    [HttpGet]
+    [Route("{id}")]
+    public async Task<IActionResult> GetFullQuestoinByID(string id)
+    {
+        var question = await _questionService.GetFullQuestionById(id);
+        return Ok(new APIResponse<ReadQuestionDto>()
+        {
+            Data = question
+        });
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GetFullQuestions()
+    {
+        var question = await _questionService.GetFullQuestions();
+        return Ok(new APIResponse<List<ReadQuestionDto>>()
+        {
+            Data = question
+        });
+    }
+
+    [HttpDelete]
+    [Route("{id}")]
+    public async Task<IActionResult> DeleteQuestion(string id)
+    {
+        await _questionService.DeleteQuestion(id);
+        return Ok(new APIResponse<string>()
+        {
+            Data = "Question Deleted successfully"
+        });
+    }
+
+    [Authorize]
+    [HttpDelete]
+    [Route("permanent/{id}")]
+    public async Task<IActionResult> DeletePermanently(string id)
+    {
+        await _questionService.DeleteQuestionPermanently(id);
+        return Ok(new APIResponse<string>()
+        {
+            Data = "Question Deleted Permanently"
+        });
+    }
+
 
 }

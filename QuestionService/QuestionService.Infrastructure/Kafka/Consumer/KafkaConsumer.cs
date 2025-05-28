@@ -3,18 +3,20 @@ using System.Text.Json;
 using Confluent.Kafka;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PlaygroundService.Application.Constants;
 using QuestionService.Application.DTOs.KafkaDto;
 using QuestionService.Application.Interfaces.Kafka;
 using QuestionService.Infrastructure.Configuration.Kafka;
 
 namespace QuestionService.Infrastructure.Kafka.Consumer
 {
-    public class KafkaConsumer:IKafkaConsumer
+    public class KafkaConsumer : IKafkaConsumer
     {
         private readonly IConsumer<Null, string> _consumer;
         private readonly string[] _topics;
         private readonly ILogger<KafkaConsumer> _logger;
         private readonly ConcurrentDictionary<string, TaskCompletionSource<ValidateUserIDResponse>> _userIDResponses = new();
+        private readonly ConcurrentDictionary<string, TaskCompletionSource<QuestionDeleteResponse>> _deleteQuestionResponse = new();
 
 
         //IOptions<T> is a built-in abstraction in ASP.NET Core used to bind configuration settings 
@@ -66,6 +68,15 @@ namespace QuestionService.Infrastructure.Kafka.Consumer
                         }
                         break;
 
+                    case KafkaTopics.DeleteQuestionResponse:
+                        var questionDeleteMessage = JsonSerializer.Deserialize<QuestionDeleteResponse>(consumeResult.Message.Value)
+                        ?? throw new ArgumentNullException("The givan value is null for validating user");
+                        if (_deleteQuestionResponse.TryRemove(correlationIDString, out var task))
+                        {
+                            task.SetResult(questionDeleteMessage);
+                        }
+                        break;
+
                     case "kafka-test":
                         var test_message = JsonSerializer.Deserialize<string>(consumeResult.Message.Value);
                         Console.WriteLine($"Question Service is consuming message, and the message is :{test_message}");
@@ -78,6 +89,12 @@ namespace QuestionService.Infrastructure.Kafka.Consumer
         {
             var tcs = new TaskCompletionSource<ValidateUserIDResponse>();
             _userIDResponses.TryAdd(correlationID, tcs);
+            return tcs.Task;
+        }
+        public Task<QuestionDeleteResponse> WaitForQuestionDeleteResponseAsync(string correlationID)
+        {
+            var tcs = new TaskCompletionSource<QuestionDeleteResponse>();
+            _deleteQuestionResponse.TryAdd(correlationID, tcs);
             return tcs.Task;
         }
     }

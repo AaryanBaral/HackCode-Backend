@@ -10,5 +10,6 @@ namespace QuestionService.Application.Interfaces.Kafka
     {
         void ConsumeAsync(CancellationToken cancellationToken);
         Task<ValidateUserIDResponse> WaitForUserIDResponseAsync(string correlationID);
+        Task<QuestionDeleteResponse> WaitForQuestionDeleteResponseAsync(string correlationID);
     }
 }
