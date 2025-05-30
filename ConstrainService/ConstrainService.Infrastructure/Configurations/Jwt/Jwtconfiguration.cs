@@ -1,13 +1,12 @@
-
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace QuestionService.Infrastructure.Configuration.Jwt
+namespace ConstrainService.Infrastructure.Configurations.Jwt
 {
-    public static class JwtConfiguration
+    public static class Jwtconfiguration
     {
         public static void AddJwtAuthentication(this IServiceCollection services, IConfiguration configuration)
         {
@@ -71,5 +70,4 @@ namespace QuestionService.Infrastructure.Configuration.Jwt
             services.AddSingleton(tokenValidationParameters);
         }
     }
-
 }

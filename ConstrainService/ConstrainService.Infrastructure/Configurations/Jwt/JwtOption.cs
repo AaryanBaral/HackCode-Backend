@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace QuestionService.Infrastructure.Configuration.Jwt
+namespace ConstrainService.Infrastructure.Configurations.Jwt
 {
     public class JwtOption
     {
