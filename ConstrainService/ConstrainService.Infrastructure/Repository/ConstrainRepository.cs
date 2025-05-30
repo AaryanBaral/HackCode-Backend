@@ -4,7 +4,7 @@ using ConstrainService.Infrastructure.Persistence;
 
 namespace ConstrainService.Infrastructure.Repository
 {
-    public class ConstrainService(AppDbContext context) : IConstrainRepository
+    public class ConstrainRepository(AppDbContext context) : IConstrainRepository
     {
         private readonly AppDbContext _context = context;
 
