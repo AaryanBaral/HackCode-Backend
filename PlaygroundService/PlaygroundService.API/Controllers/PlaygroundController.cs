@@ -3,7 +3,7 @@ using PlaygroundService.Application.Interfaces.Playground;
 
 namespace  PlaygroundService.API.Controllers;
 [Route("api/[controller]")]
-public class PlaygroundController(ILogger<PlaygroundController> logger, IPlaygroundService playgroundService) : ControllerBase
+public class PlaygroundController(IPlaygroundService playgroundService) : ControllerBase
 {
     private readonly IPlaygroundService _playgroundService = playgroundService;
 
@@ -11,8 +11,6 @@ public class PlaygroundController(ILogger<PlaygroundController> logger, IPlaygro
     [Route("get-language")]
     public async Task<IActionResult> GetLanguage([FromQuery]string name)
     {
-        Console.WriteLine("-------------------------------");
-        Console.WriteLine(name);
         var result = await _playgroundService.GetLanguage(name);
         return Ok(result);
     }

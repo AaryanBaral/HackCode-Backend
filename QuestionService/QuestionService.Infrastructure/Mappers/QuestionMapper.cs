@@ -1,16 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using QuestionService.Application.DTOs.QuestionDto;
 using QuestionService.Domain.Entities;
 
 namespace QuestionService.Infrastructure.Mappers
 {
-    public  static class QuestionMapper
+    public static class QuestionMapper
     {
-        
-         public static Question ToQueston(this AddQuestionDto addQuestionDto, string createdBy)
+
+        public static Question ToQueston(this AddQuestionDto addQuestionDto, string createdBy)
         {
             return new Question()
             {
@@ -46,6 +43,15 @@ namespace QuestionService.Infrastructure.Mappers
                 Title = question.Title,
                 Difficulty = question.Difficulty,
             };
+        }
+        public static void UpdateQuestion(this Question question, UpdateQuestionDto updateQuestionDto)
+        {
+            question.Title = updateQuestionDto.Title ?? question.Title;
+            question.Description = updateQuestionDto.Title ?? question.Description;
+            question.TimeLimit = updateQuestionDto.TimeLimit ?? question.TimeLimit;
+            question.MemoryLimit = updateQuestionDto.MemoryLimit ?? question.MemoryLimit;
+            question.Difficulty = updateQuestionDto.Difficulty ?? question.Difficulty;
+
         }
     }
 }

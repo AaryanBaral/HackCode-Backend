@@ -8,7 +8,7 @@ public class PlaygroundServiceProvider(ILanguageGetter languageGetter):IPlaygrou
 {
     private readonly ILanguageGetter _languageGetter = languageGetter;
 
-    public async Task<GetLanguageResponse> GetLanguage(string name)
+    public async Task<ReadLanguageDto> GetLanguage(string name)
     {
         var language = await _languageGetter.GetLanguage(name);
         return language;

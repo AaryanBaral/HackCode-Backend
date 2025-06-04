@@ -1,0 +1,45 @@
+
+mkdir ConstrainService && cd ConstrainService
+
+
+
+
+
+dotnet new sln -n ConstrainService
+
+
+
+
+dotnet new webapi -n ConstrainService.API
+dotnet new classlib -n ConstrainService.Application
+dotnet new classlib -n ConstrainService.Domain
+dotnet new classlib -n ConstrainService.Infrastructure
+dotnet new xunit -n ConstrainService.Tests
+
+
+
+
+mkdir -p ConstrainService.API/{Controllers,Hubs,Middlewares,ExceptionHandling,Extensions}
+mkdir -p ConstrainService.Application/{Interfaces,Services,DTOs,SignalR}
+mkdir -p ConstrainService.Domain/{Entities,ValueObjects,Enums}
+mkdir -p ConstrainService.Infrastructure/{Kafka,Persistence,Repository,DockerSandbox,SignalR}
+
+
+
+
+dotnet add ConstrainService.API/ConstrainService.API.csproj reference ConstrainService.Application/ConstrainService.Application.csproj
+dotnet add ConstrainService.API/ConstrainService.API.csproj reference ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj
+dotnet add ConstrainService.Application/ConstrainService.Application.csproj reference ConstrainService.Domain/ConstrainService.Domain.csproj
+dotnet add ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj reference ConstrainService.Application/ConstrainService.Application.csproj
+dotnet add ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj reference ConstrainService.Domain/ConstrainService.Domain.csproj
+dotnet add ConstrainService.Tests/ConstrainService.Tests.csproj reference ConstrainService.Application/ConstrainService.Application.csproj
+dotnet add ConstrainService.Tests/ConstrainService.Tests.csproj reference ConstrainService.Domain/ConstrainService.Domain.csproj
+
+
+
+
+dotnet sln add ConstrainService.API/ConstrainService.API.csproj
+dotnet sln add ConstrainService.Application/ConstrainService.Application.csproj
+dotnet sln add ConstrainService.Domain/ConstrainService.Domain.csproj
+dotnet sln add ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj
+dotnet sln add ConstrainService.Tests/ConstrainService.Tests.csproj

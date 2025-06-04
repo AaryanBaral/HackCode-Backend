@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,13 +9,6 @@ namespace QuestionService.Infrastructure.Configuration.Database
 {
     public static class DatabaseConfiguration
     {
-        public static async Task InitializeDbAsync(this IServiceProvider serviceProvider)
-        {
-            using var scope = serviceProvider.CreateScope();
-            var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-            await dbContext.Database.MigrateAsync();
-        }
-
         public static IServiceCollection AddDatabase(
             this IServiceCollection services,
             IConfiguration configuration
