@@ -46,6 +46,52 @@ namespace UserService.Controllers
 
             return Ok(result); // returns token and role
         }
+
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetUserById(String id)
+        {
+            var result = await _authService.GetUserById(id);
+            if (result == null)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+
+        [HttpGet("email")]
+        public async Task<IActionResult> GetUserByEmail(String email)
+        {
+            var result = await _authService.GetUserByEmailAsync(email);
+            if (result == null)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var result = await _authService.GetAllUsers();
+            if (result == null)
+            {
+                return BadRequest(result);
+            }
+            return Ok(result);
+        }
+
+        [HttpPut("/{id}")]
+        public async Task<IActionResult> UpdateUser(String id, RegisterDto dto)
+        {
+            {
+                var result = await _authService.UpdateUser(dto, id);
+                if (result == null)
+                {
+                    return BadRequest(result);
+                }
+                return Ok(result);
+            }
+        }
     }
 }
 
