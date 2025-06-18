@@ -117,5 +117,18 @@ namespace UserService.Infrastructure.Repository
             }
             return false;
         }
+        public async Task<String> GetUserRoleAsync(string id)
+        {
+            var appUser = await _userManager.FindByIdAsync(id);
+            if (appUser != null)
+            {
+                var role = await _userManager.GetRolesAsync(appUser);
+                return role.FirstOrDefault() ?? "unknown";
+            }
+            throw new KeyNotFoundException("there is no user of this id");
+            
+        }
+
+    
     }
 }

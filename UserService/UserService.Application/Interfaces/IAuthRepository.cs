@@ -17,6 +17,7 @@ namespace UserService.Application.Interfaces
         Task<bool> DeleteUser(string Id);
         Task<bool> DeleteUserPermanently(string Id);
         Task<ResultDto> UpdateUser(string Id, RegisterDto dto);
+        Task<String> GetUserRoleAsync(String id); 
     }
 
     public class ResultDto

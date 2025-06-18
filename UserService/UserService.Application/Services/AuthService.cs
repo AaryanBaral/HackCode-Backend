@@ -1,5 +1,3 @@
-using System.Diagnostics;
-using System.Reflection.Metadata.Ecma335;
 using System.Security.Authentication;
 using UserService.Application.DTOs;
 using UserService.Application.Interfaces;
@@ -116,9 +114,12 @@ namespace UserService.Application.Services
         {
             var user = await _authRepository.GetUserByEmailAsync(email);
             return user;
+        }
 
-
-
+        public async Task<String> GetUserRole(string id)
+        {
+            var role = await _authRepository.GetUserRoleAsync(id);
+            return role;
         }
 
         
