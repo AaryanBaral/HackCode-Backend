@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using UserService.Application.DTOs;
@@ -10,17 +8,11 @@ using UserService.Infrastructure.Mappers;
 
 namespace UserService.Infrastructure.Repository
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthRepository(UserManager<ApplicationUser> userManager,
+                          SignInManager<ApplicationUser> signInManager) : IAuthRepository
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-
-        public AuthRepository(UserManager<ApplicationUser> userManager,
-                              SignInManager<ApplicationUser> signInManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-        }
+        private readonly UserManager<ApplicationUser> _userManager = userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager = signInManager;
 
         public async Task<User> GetUserByEmailAsync(string email)
         {

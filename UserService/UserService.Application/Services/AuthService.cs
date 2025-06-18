@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Reflection.Metadata.Ecma335;
+using System.Security.Authentication;
 using UserService.Application.DTOs;
 using UserService.Application.Interfaces;
 using UserService.Application.Mappers;
@@ -24,7 +25,7 @@ namespace UserService.Application.Services
         {
             var user = await _authRepository.GetUserByEmailAsync(dto.Email);
             if (user == null || !await _authRepository.CheckPasswordAsync(user, dto.Password))
-                return null;
+                throw new AuthenticationException("User Not authenticated");
             var token = _tokenService.GenerateJwtToken(user);
 
             return new AuthResponseDto

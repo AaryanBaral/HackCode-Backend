@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Net;
+using System.Security.Authentication;
 using Azure;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Diagnostics;
@@ -56,7 +57,8 @@ namespace UserService.API.GlobalExceptionHandler
                 InvalidCastException => ((int)HttpStatusCode.BadRequest, exception.Message),
                 FormatException => ((int)HttpStatusCode.BadRequest, exception.Message),
                 KeyNotFoundException => ((int)HttpStatusCode.NotFound, exception.Message),
-                AuthenticationFailureException => ((int)HttpStatusCode.BadRequest, exception.Message),
+                AuthenticationFailureException => ((int)HttpStatusCode.Unauthorized, exception.Message),
+                AuthenticationException => ((int)HttpStatusCode.Unauthorized, exception.Message),
                 RequestFailedException => ((int)HttpStatusCode.BadRequest, exception.Message),
                 ValidationException => ((int)HttpStatusCode.BadRequest, exception.Message),
                 SqlException sqlEx => HandleSqlException(sqlEx), // Direct handling of SqlException
