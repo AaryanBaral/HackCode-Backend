@@ -1,8 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using QuestionService.Application.DTOs.QuestionDto;
 using QuestionService.Application.Interfaces.Repository;
 using QuestionService.Domain.Entities;
-using QuestionService.Infrastructure.Mappers;
 using QuestionService.Infrastructure.Persistence;
 
 namespace QuestionService.Infrastructure.Repository
@@ -12,60 +10,49 @@ namespace QuestionService.Infrastructure.Repository
     {
         private readonly AppDbContext _context = context;
 
-        public async Task<bool> CreateQuestion(AddQuestionDto addQuestionDto, string userId)
+        public async Task<bool> CreateQuestion(Question question)
         {
 
-            // user id is already validated 
-            Question question = QuestionMapper.ToQueston(addQuestionDto, userId);
             await _context.Questions.AddAsync(question);
             await _context.SaveChangesAsync();
             return true;
         }
 
-        public async Task<ReadQuestionDto> GetFullQuestionById(string questionId)
+        public async Task<Question?> GetFullQuestionById(string questionId)
         {
-            var question = await _context.Questions.FindAsync(questionId) ?? throw new KeyNotFoundException("Given Question Id is not valid");
-            return question.ToReadQuestionDto();
+            var question = await _context.Questions.FindAsync(questionId);
+            return question;
         }
-        public async Task<List<ReadAbstractQuestionDto>> GetAllAbstractQuestion()
+        public async Task<List<Question>> GetAllQuestions()
         {
             var question = await _context.Questions.ToListAsync();
-            if (question.Count == 0)
-                throw new NullReferenceException(nameof(question));
-
-            return [.. question.Select(q => q.ToReadAbstractQuestionDto())];
+            return question;
         }
 
-        public async Task<List<ReadQuestionDto>> GetFullQuestions()
+        public async Task UpdateQuestion(Question question)
         {
-            var question = await _context.Questions.ToListAsync();
-            if (question.Count == 0)
-                throw new NullReferenceException(nameof(question));
-            return [.. question.Select(q => q.ToReadQuestionDto())];
-        }
-
-        public async Task<bool> UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id)
-        {
-            var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
-            question.UpdateQuestion(updateQuestionDto);
+            _context.Questions.Update(question);
             await _context.SaveChangesAsync();
-            return true;
         }
 
-        public async Task<bool> DeleteQuestion(string id)
+        public async Task DeleteQuestion(string id)
         {
             var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
             question.IsDeleted = true;
             await _context.SaveChangesAsync();
-            return true;
         }
 
-        public async Task<bool> DeleteQuestionPermanently(string id)
+        public async Task DeleteQuestionPermanently(string id)
         {
-            var question = await _context.Questions.FindAsync(id) ?? throw new KeyNotFoundException("Given Question Id is not valid");
+            var question = await _context.Questions.IgnoreQueryFilters().FirstOrDefaultAsync(q => q.QuestionId == id && q.IsDeleted)
+                ?? throw new KeyNotFoundException("constrain of given id not found");
             _context.Questions.Remove(question);
             await _context.SaveChangesAsync();
-            return true;
+        }
+        public async Task<bool> ValidateQuestion(string id)
+        {
+            var question = await _context.Questions.FindAsync(id);
+            return question != null;
         }
 
 

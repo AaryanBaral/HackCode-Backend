@@ -1,4 +1,3 @@
-using System;
 using LanguageService.Application.DTOs.APIResponse;
 using LanguageService.Application.DTOs.LanguageDto;
 using LanguageService.Application.Interfaces;
@@ -49,6 +48,16 @@ namespace LanguageService.API.Controllers
             return Ok(new APIResponse<string>()
             {
                 Data = "Language Created Successfully"
+            });
+        }
+        [HttpDelete]
+        [Route("id")]
+        public async Task<IActionResult> DeleteLanguage(string id)
+        {
+            await _service.DeleteLanguage(id);
+            return Ok(new APIResponse<string>()
+            {
+                Data = "Language Deleted Successfully"
             });
         }
 

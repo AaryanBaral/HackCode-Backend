@@ -1,16 +1,9 @@
 
 using QuestionService.API.ExceptionHandling;
-using QuestionService.Application.Interfaces;
-using QuestionService.Application.Interfaces.Repository;
+using QuestionService.Application.Interfaces.Service;
 using QuestionService.Application.Services;
-using QuestionService.Infrastructure.Configuration.Database;
-using QuestionService.Infrastructure.Configuration.Jwt;
-using QuestionService.Infrastructure.Configuration.Kafka;
 using QuestionService.Infrastructure.DependencyInjection;
-using QuestionService.Infrastructure.Kafka;
-using QuestionService.Infrastructure.Kafka.Consumer;
-using QuestionService.Infrastructure.Kafka.Producer;
-using QuestionService.Infrastructure.Repository;
+
 
 namespace QuestionService.API.Extensions
 {

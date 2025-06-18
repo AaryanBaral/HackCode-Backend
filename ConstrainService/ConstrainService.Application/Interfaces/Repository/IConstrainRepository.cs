@@ -7,5 +7,7 @@ namespace ConstrainService.Application.Interfaces.Repository
     {
 
         Task AddConstrain(Constrain constrain);
+        Task<List<Constrain>> GetAllConstrain();
+        Task<Constrain> GetConstrainById(string id);
     }
 }

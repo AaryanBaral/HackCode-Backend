@@ -1,45 +1,45 @@
 
-mkdir ConstrainService && cd ConstrainService
+mkdir TestCaseService && cd TestCaseService
 
 
 
 
 
-dotnet new sln -n ConstrainService
+dotnet new sln -n TestCaseService
 
 
 
 
-dotnet new webapi -n ConstrainService.API
-dotnet new classlib -n ConstrainService.Application
-dotnet new classlib -n ConstrainService.Domain
-dotnet new classlib -n ConstrainService.Infrastructure
-dotnet new xunit -n ConstrainService.Tests
+dotnet new webapi -n TestCaseService.API
+dotnet new classlib -n TestCaseService.Application
+dotnet new classlib -n TestCaseService.Domain
+dotnet new classlib -n TestCaseService.Infrastructure
+dotnet new xunit -n TestCaseService.Tests
 
 
 
 
-mkdir -p ConstrainService.API/{Controllers,Hubs,Middlewares,ExceptionHandling,Extensions}
-mkdir -p ConstrainService.Application/{Interfaces,Services,DTOs,SignalR}
-mkdir -p ConstrainService.Domain/{Entities,ValueObjects,Enums}
-mkdir -p ConstrainService.Infrastructure/{Kafka,Persistence,Repository,DockerSandbox,SignalR}
+mkdir -p TestCaseService.API/{Controllers,Hubs,Middlewares,ExceptionHandling,Extensions}
+mkdir -p TestCaseService.Application/{Interfaces,Services,DTOs,SignalR}
+mkdir -p TestCaseService.Domain/{Entities,ValueObjects,Enums}
+mkdir -p TestCaseService.Infrastructure/{Kafka,Persistence,Repository,DockerSandbox,SignalR}
 
 
 
 
-dotnet add ConstrainService.API/ConstrainService.API.csproj reference ConstrainService.Application/ConstrainService.Application.csproj
-dotnet add ConstrainService.API/ConstrainService.API.csproj reference ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj
-dotnet add ConstrainService.Application/ConstrainService.Application.csproj reference ConstrainService.Domain/ConstrainService.Domain.csproj
-dotnet add ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj reference ConstrainService.Application/ConstrainService.Application.csproj
-dotnet add ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj reference ConstrainService.Domain/ConstrainService.Domain.csproj
-dotnet add ConstrainService.Tests/ConstrainService.Tests.csproj reference ConstrainService.Application/ConstrainService.Application.csproj
-dotnet add ConstrainService.Tests/ConstrainService.Tests.csproj reference ConstrainService.Domain/ConstrainService.Domain.csproj
+dotnet add TestCaseService.API/TestCaseService.API.csproj reference TestCaseService.Application/TestCaseService.Application.csproj
+dotnet add TestCaseService.API/TestCaseService.API.csproj reference TestCaseService.Infrastructure/TestCaseService.Infrastructure.csproj
+dotnet add TestCaseService.Application/TestCaseService.Application.csproj reference TestCaseService.Domain/TestCaseService.Domain.csproj
+dotnet add TestCaseService.Infrastructure/TestCaseService.Infrastructure.csproj reference TestCaseService.Application/TestCaseService.Application.csproj
+dotnet add TestCaseService.Infrastructure/TestCaseService.Infrastructure.csproj reference TestCaseService.Domain/TestCaseService.Domain.csproj
+dotnet add TestCaseService.Tests/TestCaseService.Tests.csproj reference TestCaseService.Application/TestCaseService.Application.csproj
+dotnet add TestCaseService.Tests/TestCaseService.Tests.csproj reference TestCaseService.Domain/TestCaseService.Domain.csproj
 
 
 
 
-dotnet sln add ConstrainService.API/ConstrainService.API.csproj
-dotnet sln add ConstrainService.Application/ConstrainService.Application.csproj
-dotnet sln add ConstrainService.Domain/ConstrainService.Domain.csproj
-dotnet sln add ConstrainService.Infrastructure/ConstrainService.Infrastructure.csproj
-dotnet sln add ConstrainService.Tests/ConstrainService.Tests.csproj
+dotnet sln add TestCaseService.API/TestCaseService.API.csproj
+dotnet sln add TestCaseService.Application/TestCaseService.Application.csproj
+dotnet sln add TestCaseService.Domain/TestCaseService.Domain.csproj
+dotnet sln add TestCaseService.Infrastructure/TestCaseService.Infrastructure.csproj
+dotnet sln add TestCaseService.Tests/TestCaseService.Tests.csproj

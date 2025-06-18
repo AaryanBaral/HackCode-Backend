@@ -18,10 +18,32 @@ namespace ConstrainService.API.Controllers
         public async Task<IActionResult> AddConstrain(AddConstrainDto addConstrainDto)
         {
             await _constrainServiceProvider.AddConstrain(addConstrainDto);
-            
+
             return Ok(new APIResponse<string>()
             {
                 Data = "Constrain Created Successfully"
+            });
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAllConstrains()
+        {
+            var constrains = await _constrainServiceProvider.GetAllConstrain();
+
+            return Ok(new APIResponse<List<ReadConstrainDto>>()
+            {
+                Data = constrains
+            });
+        }
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetAllConstrains(string id)
+        {
+            var constrain = await _constrainServiceProvider.GetConstrainById(id);
+
+            return Ok(new APIResponse<ReadConstrainDto>()
+            {
+                Data = constrain
             });
         }
 

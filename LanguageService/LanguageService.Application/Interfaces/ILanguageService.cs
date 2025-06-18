@@ -12,6 +12,7 @@ namespace LanguageService.Application.Interfaces
         Task<ReadLanguageDto?> GetLanguageById(string id);
         Task<ReadLanguageDto?> GetLanguageByName(string name);
         Task<List<ReadLanguageDto>?> GetAllLanguage();
+        Task DeleteLanguage(string id);
 
     }
 }

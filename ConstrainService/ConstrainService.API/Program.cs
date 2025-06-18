@@ -1,10 +1,12 @@
+using ConstrainService.API.Extensions;
+using Microsoft.AspNetCore.Diagnostics;
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddControllers();
+builder.Services.AddAppServices(builder.Configuration);
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -12,30 +14,35 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
+app.UseCors("AllowAny");
 app.UseHttpsRedirection();
-
-var summaries = new[]
+app.MapGet("/", () => "HackCode is working bitchessssss!");
+app.UseAuthentication();
+app.UseAuthorization();
+app.UseExceptionHandler(handler =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    handler.Run(async context =>
+    {
+        var exceptionHandler = context.RequestServices.GetRequiredService<IExceptionHandler>();
+        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+        if (exception != null && !context.Response.HasStarted)
+        {
+            context.Response.Clear();
+            await exceptionHandler.TryHandleAsync(context, exception, context.RequestAborted);
+        }
+        else if (context.Response.HasStarted)
+        {
+            // Log that response has started
+
+            var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+            logger.LogWarning("Response already started, skipping exception handling");
+        }
+    });
+});
+
+app.MapControllers();
+
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

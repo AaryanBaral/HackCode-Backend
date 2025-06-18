@@ -66,6 +66,7 @@ namespace PlaygroundService.API.ExceptionHandling
                 AuthenticationFailureException => ((int)HttpStatusCode.Unauthorized, "Authentication failed", "AUTH_FAILED"),
                 ValidationException => ((int)HttpStatusCode.BadRequest, exception.Message, "VALIDATION_ERROR"),
                 DuplicateNameException => ((int)HttpStatusCode.BadRequest, exception.Message, "DUPLICATE_NAME"),
+                NullReferenceException => ((int)HttpStatusCode.InternalServerError, "A null reference occurred in the server", "NULL_REFERENCE"),
                 PostgresException sqlEx => HandlePostgresException(sqlEx),
                 Exception => ((int)HttpStatusCode.InternalServerError, "An unexpected error occurred", "INTERNAL_SERVER_ERROR"),
             };

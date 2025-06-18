@@ -35,5 +35,10 @@ namespace LanguageService.Application.Services
             if (language is null) return null;
             return [.. language.Select(e => e.ToReadLanguage())];
         }
+
+        public async Task DeleteLanguage(string id)
+        {
+            await _repository.DeleteLanguage(id);
+        }
     }
 }

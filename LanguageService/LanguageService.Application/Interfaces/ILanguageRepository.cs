@@ -8,5 +8,6 @@ namespace LanguageService.Application.Interfaces
         Task<Language?> GetLanguageById(string id);
         Task<List<Language>?> GetLanguagesAsync();
         Task<Language?> GetLanguageByName(string name);
+        Task DeleteLanguage(string id);
     }
 }

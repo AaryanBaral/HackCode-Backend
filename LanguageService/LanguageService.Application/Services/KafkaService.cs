@@ -14,17 +14,12 @@ namespace LanguageService.Application.Services
 
         public async Task GetLanguageByNameForKafka(GetLanguageRequest getLanguageRequest)
         {
-            Console.WriteLine(JsonSerializer.Serialize(getLanguageRequest));
-            Console.WriteLine("------------------------");
             var languageDto = await _repository.GetLanguageByName(getLanguageRequest.Name);
-            Console.WriteLine(JsonSerializer.Serialize(languageDto));
             var getLanguageResponse = new GetLanguageResponse()
             {
                 CorrelationID = getLanguageRequest.CorrelationID,
                 Data = languageDto?.ToReadLanguage()
             };
-            Console.WriteLine("ResposneDto");
-            Console.WriteLine(JsonSerializer.Serialize(getLanguageResponse));
             await _producer.ProduceAsync(KafkaTopics.GetLanguageByNameResponse, getLanguageResponse, getLanguageRequest.CorrelationID);
         }
     }

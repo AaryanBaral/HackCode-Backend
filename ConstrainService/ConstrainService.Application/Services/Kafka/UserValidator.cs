@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace QuestionService.Application.Extensions
+namespace ConstrainService.Application.Services.Kafka
 {
-    public class DependencyInjection
+    public class UserValidator
     {
         
     }

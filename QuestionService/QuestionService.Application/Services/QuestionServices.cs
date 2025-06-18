@@ -1,40 +1,36 @@
-
 using PlaygroundService.Application.Constants;
 using QuestionService.Application.DTOs.KafkaDto;
 using QuestionService.Application.DTOs.QuestionDto;
 using QuestionService.Application.Interfaces.Service;
 using QuestionService.Application.Interfaces.Kafka;
 using QuestionService.Application.Interfaces.Repository;
+using QuestionService.Application.Mappers;
+
 
 namespace QuestionService.Application.Services
 {
-    public class QuestionServices(IKafkaProducer producer, IKafkaConsumer responseConsumer, IQuestionRepository repository) : IQuestionService
+    public class QuestionServices(IKafkaProducer producer,
+    IKafkaConsumer responseConsumer,
+    IQuestionRepository repository,
+    IKafkaService kafkaService) : IQuestionService
     {
         private readonly IKafkaProducer _producer = producer;
         private readonly IKafkaConsumer _responseConsumer = responseConsumer;
         private readonly IQuestionRepository _repository = repository;
-        public async Task<bool> AddQuestionAsync(AddQuestionDto addQuestionDto, string userID)
-
+        private readonly IKafkaService _kafkaService = kafkaService;
+        public async Task AddQuestionAsync(AddQuestionDto addQuestionDto, string userID)
         {
-            // Generate unique correlation ID
-            var correlationID = Guid.NewGuid().ToString() ?? throw new NullReferenceException("the guid is generated null");
-
-            // Send validation request
-            var request = new ValidateUserIdRequest { UserID = userID, CorrelationID = correlationID };
-            await _producer.ProduceAsync("validateUserID-request", request, correlationID);
-
-            // Wait for response
-            var response = await _responseConsumer.WaitForUserIDResponseAsync(correlationID);
+            
+            var response = await _kafkaService.ValidateUserIdRequest(userID);
 
             if (!response.IsValid)
             {
                 throw new KeyNotFoundException($"Given UserId is not valid {response.Message}");
             }
+            var question = addQuestionDto.ToQueston(userID);
 
+            await _repository.CreateQuestion(question);
 
-            await _repository.CreateQuestion(addQuestionDto, userID);
-
-            return true;
         }
 
         public async Task<bool> TestKafka()
@@ -43,36 +39,35 @@ namespace QuestionService.Application.Services
             return true;
         }
 
-        public async Task<bool> UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id)
+        public async Task UpdateQuestion(UpdateQuestionDto updateQuestionDto, string id)
         {
-            await _repository.UpdateQuestion(updateQuestionDto, id);
-            return true;
+            var question = await _repository.GetFullQuestionById(id) ?? throw new KeyNotFoundException("question of given id not found");
+            question.UpdateQuestion(updateQuestionDto);
+            await _repository.UpdateQuestion(question);
         }
-        public async Task<bool> DeleteQuestion(string id)
+        public async Task DeleteQuestion(string id)
         {
             await _repository.DeleteQuestion(id);
-            return true;
         }
         public async Task<ReadQuestionDto> GetFullQuestionById(string questionId)
         {
-            var question = await _repository.GetFullQuestionById(questionId);
-            return question;
+            var question = await _repository.GetFullQuestionById(questionId) ?? throw new KeyNotFoundException("question of given id not found");
+            return question.ToReadQuestionDto();
         }
         public async Task<List<ReadAbstractQuestionDto>> GetAllAbstractQuestion()
         {
-            var questions = await _repository.GetAllAbstractQuestion();
-            return questions;
+            var questions = await _repository.GetAllQuestions();
+            return [.. questions.Select(q => q.ToReadAbstractQuestionDto())];
         }
         public async Task<List<ReadQuestionDto>> GetFullQuestions()
         {
-            var questions = await _repository.GetFullQuestions();
-            return questions;
+            var questions = await _repository.GetAllQuestions();
+            return [.. questions.Select(q => q.ToReadQuestionDto())];
         }
-        public async Task<bool> DeleteQuestionPermanently(string id)
+        public async Task DeleteQuestionPermanently(string id)
         {
             await _repository.DeleteQuestionPermanently(id);
             await DeleteQuestionKafka(id);
-            return true;
         }
 
         private async Task<QuestionDeleteResponse> DeleteQuestionKafka(string id)
@@ -88,6 +83,12 @@ namespace QuestionService.Application.Services
             var result = await deleteQuestionResponse;
             return result;
         }
-        
+
+        public async Task<bool> ValidateQuestionByID(string id)
+        {
+            return await _repository.ValidateQuestion(id);
+        }
+
+
     }
 }

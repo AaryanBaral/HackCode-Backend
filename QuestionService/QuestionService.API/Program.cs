@@ -45,7 +45,6 @@ app.MapGet("/", () => "HackCode is working bitchessssss!");
 app.UseAuthentication();
 app.UseAuthorization();
 
-await app.Services.InitializeDbAsync();
 app.MapControllers();
 
 

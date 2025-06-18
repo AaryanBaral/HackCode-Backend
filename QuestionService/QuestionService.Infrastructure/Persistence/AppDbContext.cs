@@ -34,12 +34,6 @@ namespace QuestionService.Infrastructure.Persistence
                 entity.Property(e => e.Description)
                 .HasColumnType("TEXT");
 
-                entity.Property(e => e.TimeLimit)
-                .HasMaxLength(255);
-
-                entity.Property(e => e.MemoryLimit)
-                .HasMaxLength(255);
-
                 entity.Property(q => q.Difficulty)
                 .HasConversion(
                     v => v.ToString(),     // Convert enum to string when saving

@@ -35,5 +35,13 @@ namespace LanguageService.Infrastructure.Repository
         {
             return await _context.Languages.ToListAsync();
         }
+
+        public async Task DeleteLanguage(string id)
+        {
+            var language = await GetLanguageById(id) ?? throw new KeyNotFoundException("Given key not found");
+            _context.Languages.Remove(language);
+            await _context.SaveChangesAsync();
+
+        }
     }
 }

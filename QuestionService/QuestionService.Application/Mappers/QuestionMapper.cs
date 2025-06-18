@@ -2,7 +2,7 @@
 using QuestionService.Application.DTOs.QuestionDto;
 using QuestionService.Domain.Entities;
 
-namespace QuestionService.Infrastructure.Mappers
+namespace QuestionService.Application.Mappers
 {
     public static class QuestionMapper
     {
@@ -14,8 +14,6 @@ namespace QuestionService.Infrastructure.Mappers
                 Title = addQuestionDto.Title,
                 Description = addQuestionDto.Description,
                 Difficulty = addQuestionDto.Difficulty,
-                MemoryLimit = addQuestionDto.MemoryLimit,
-                TimeLimit = addQuestionDto.TimeLimit,
                 CreatedBy = createdBy,
                 UpdatedAt = DateTime.UtcNow
             };
@@ -29,8 +27,6 @@ namespace QuestionService.Infrastructure.Mappers
                 Title = question.Title,
                 Description = question.Description,
                 Difficulty = question.Difficulty,
-                MemoryLimit = question.MemoryLimit,
-                TimeLimit = question.TimeLimit,
                 CreatedBy = question.CreatedBy,
                 UpdatedAt = question.UpdatedAt
             };
@@ -48,8 +44,6 @@ namespace QuestionService.Infrastructure.Mappers
         {
             question.Title = updateQuestionDto.Title ?? question.Title;
             question.Description = updateQuestionDto.Title ?? question.Description;
-            question.TimeLimit = updateQuestionDto.TimeLimit ?? question.TimeLimit;
-            question.MemoryLimit = updateQuestionDto.MemoryLimit ?? question.MemoryLimit;
             question.Difficulty = updateQuestionDto.Difficulty ?? question.Difficulty;
 
         }

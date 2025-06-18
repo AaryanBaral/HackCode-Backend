@@ -1,5 +1,4 @@
 using LanguageService.API.Extensions;
-using LanguageService.Infrastructure.Configurations.Database;
 using Microsoft.AspNetCore.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);

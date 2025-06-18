@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Diagnostics;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using Confluent.Kafka;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Diagnostics;
@@ -88,6 +84,7 @@ namespace QuestionService.API.ExceptionHandling
                 ValidationException => ((int)HttpStatusCode.BadRequest, exception.Message, "VALIDATION_ERROR"),
                 DuplicateNameException => ((int)HttpStatusCode.BadRequest, exception.Message, "DUPLICATE_NAME"),
                 SecurityTokenExpiredException => ((int)HttpStatusCode.Unauthorized, "Token expired", "TOKEN_EXPIRED"),
+                NullReferenceException => ((int)HttpStatusCode.InternalServerError, "A null reference occurred in the server", "NULL_REFERENCE"),
                 PostgresException sqlEx => HandlePostgresException(sqlEx),
                 _ => ((int)HttpStatusCode.InternalServerError, "An unexpected error occurred", "INTERNAL_SERVER_ERROR"),
             };

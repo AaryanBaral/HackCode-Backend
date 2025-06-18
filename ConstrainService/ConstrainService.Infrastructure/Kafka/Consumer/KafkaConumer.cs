@@ -19,7 +19,7 @@ namespace ConstrainService.Infrastructure.Kafka.Consumer
         private readonly string[] _topics;
         private readonly ILogger<KafkaConsumer> _logger;
         private readonly ConcurrentDictionary<string, TaskCompletionSource<ValidateUserIdResponse>> _userIDResponses = new();
-        // private readonly ConcurrentDictionary<string, TaskCompletionSource<QuestionDeleteResponse>> _deleteQuestionResponse = new();
+        private readonly ConcurrentDictionary<string, TaskCompletionSource<ValidateQuestionResponse>> _validateQuestionResponse = new();
 
 
         //IOptions<T> is a built-in abstraction in ASP.NET Core used to bind configuration settings 
@@ -94,11 +94,11 @@ namespace ConstrainService.Infrastructure.Kafka.Consumer
             _userIDResponses.TryAdd(correlationID, tcs);
             return tcs.Task;
         }
-        // public Task<QuestionDeleteResponse> WaitForQuestionDeleteResponseAsync(string correlationID)
-        // {
-        //     var tcs = new TaskCompletionSource<QuestionDeleteResponse>();
-        //     _deleteQuestionResponse.TryAdd(correlationID, tcs);
-        //     return tcs.Task;
-        // }
+        public Task<ValidateQuestionResponse> WaitForValidateQuestionIdResponseAsync(string correlationID)
+        {
+            var tcs = new TaskCompletionSource<ValidateQuestionResponse>();
+            _validateQuestionResponse.TryAdd(correlationID, tcs);
+            return tcs.Task;
+        }
     }
 }

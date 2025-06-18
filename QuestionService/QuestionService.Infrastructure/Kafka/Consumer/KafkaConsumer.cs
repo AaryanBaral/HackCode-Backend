@@ -56,7 +56,7 @@ namespace QuestionService.Infrastructure.Kafka.Consumer
                 if (consumeResult == null) continue;
                 var correlationID = consumeResult.Message.Headers
                 .FirstOrDefault(h => h.Key == "correlationID")?.GetValueBytes() ?? throw new NullReferenceException("The header is null");
-                var correlationIDString = System.Text.Encoding.UTF8.GetString(correlationID);
+                var correlationIDString = System.Text.Encoding.UTF32.GetString(correlationID);
                 switch (consumeResult.Topic)
                 {
                     case "validateUserID-request":
@@ -76,7 +76,10 @@ namespace QuestionService.Infrastructure.Kafka.Consumer
                             task.SetResult(questionDeleteMessage);
                         }
                         break;
-
+                    
+                    case KafkaTopics.ValidateQuestionId:
+                        var questionValidateMessage = JsonSerializer.Deserialize<ValidateQuestionRequest>(consumeResult.Message.Value);
+                        break;
                     case "kafka-test":
                         var test_message = JsonSerializer.Deserialize<string>(consumeResult.Message.Value);
                         Console.WriteLine($"Question Service is consuming message, and the message is :{test_message}");
