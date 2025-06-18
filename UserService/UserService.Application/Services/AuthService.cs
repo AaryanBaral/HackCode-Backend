@@ -1,6 +1,9 @@
+using System.Diagnostics;
+using System.Reflection.Metadata.Ecma335;
 using UserService.Application.DTOs;
 using UserService.Application.Interfaces;
 using UserService.Application.Mappers;
+using UserService.Domain.Entities;
 
 namespace UserService.Application.Services
 {
@@ -46,7 +49,7 @@ namespace UserService.Application.Services
                     Role = string.Empty
                 };
             }
-            
+
 
             var user = dto.ToRegisterUser();
             var createdUser = await _authRepository.CreateUserAsync(user, dto.Password);
@@ -78,5 +81,45 @@ namespace UserService.Application.Services
             };
         }
 
+        public async Task<List<ReadUserDto>> GetAllUsers()
+        {
+            var users = await _authRepository.GetAllUsers();
+            return users ?? [];
+        }
+
+        public async Task<ReadUserDto> GetUserById(string Id)
+        {
+            var user = await _authRepository.GetUserById(Id);
+            return user;
+        }
+
+        public async Task<bool> DeleteUser(String Id)
+        {
+            var result = await _authRepository.DeleteUser(Id);
+            return result;
+        }
+
+        public async Task<bool> DeleteUserPermanently(String Id)
+        {
+            var result = await _authRepository.DeleteUserPermanently(Id);
+            return result;
+        }
+
+        public async Task<ResultDto> UpdateUser(RegisterDto dto, string Id)
+        {
+            var result = await _authRepository.UpdateUser(Id, dto);
+            return result;
+        }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            var user = await _authRepository.GetUserByEmailAsync(email);
+            return user;
+
+
+
+        }
+
+        
     }
 }

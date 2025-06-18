@@ -25,13 +25,13 @@ namespace UserService.Infrastructure.Mappers
         {
             return new ApplicationUser
             {
-                
+
                 Email = dto.Email,
                 PasswordHash = dto.Password
             };
         }
 
-         public static User ToDomainUser(this ApplicationUser identityUser)
+        public static User ToDomainUser(this ApplicationUser identityUser)
         {
             return new User
             {
@@ -42,14 +42,23 @@ namespace UserService.Infrastructure.Mappers
                 CreatedAt = identityUser.CreatedAt
             };
         }
-        
- public static ApplicationUser ToApplicationUser(this User domainUser)
+
+        public static ApplicationUser ToApplicationUser(this User domainUser)
         {
             return new ApplicationUser
             {
                 UserName = domainUser.UserName,
-                Email = domainUser.Email,   
+                Email = domainUser.Email,
                 CreatedAt = domainUser.CreatedAt
+            };
+        }
+        public static ReadUserDto ToReadUserDto(this ApplicationUser user)
+        {
+            return new ReadUserDto
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                Email = user.Email
             };
         }
         

@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
@@ -46,6 +47,27 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseExceptionHandler(handler =>
+{
+    handler.Run(async context =>
+    {
+        var exceptionHandler = context.RequestServices.GetRequiredService<IExceptionHandler>();
+        var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+
+        if (exception != null && !context.Response.HasStarted)
+        {
+            context.Response.Clear();
+            await exceptionHandler.TryHandleAsync(context, exception, context.RequestAborted);
+        }
+        else if (context.Response.HasStarted)
+        {
+            // Log that response has started
+            var logger = context.RequestServices.GetRequiredService<ILogger<Program>>();
+            logger.LogWarning("Response already started, skipping exception handling");
+        }
+    });
+});
 
 app.UseAuthentication();
 app.UseAuthorization();

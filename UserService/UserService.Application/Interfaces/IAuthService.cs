@@ -1,15 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using UserService.Application.DTOs;
+using UserService.Domain.Entities;
 
 namespace UserService.Application.Interfaces
 {
     public interface IAuthService
     {
-        Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
         Task<AuthResponseDto> LoginAsync(LoginDto dto);
-
+        Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
+        Task<List<ReadUserDto>> GetAllUsers();
+        Task<ReadUserDto> GetUserById(string Id);
+        Task<bool> DeleteUser(string Id);
+        Task<bool> DeleteUserPermanently(string Id);
+        Task<ResultDto> UpdateUser(RegisterDto dto, string Id);
+        Task<User> GetUserByEmailAsync(string email);
     }
 }
