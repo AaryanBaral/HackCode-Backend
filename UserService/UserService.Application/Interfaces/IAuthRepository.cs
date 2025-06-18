@@ -14,7 +14,8 @@ namespace UserService.Application.Interfaces
         Task<bool> CheckPasswordAsync(User user, string password, bool lockoutOnFailure = false);
         Task<List<ReadUserDto>> GetAllUsers();
         Task<ReadUserDto> GetUserById(string id);
-        Task<ResultDto> DeleteUserById(string Id);
+        Task<bool> DeleteUser(string Id);
+        Task<bool> DeleteUserPermanently(string Id);
         Task<ResultDto> UpdateUser(string Id, RegisterDto dto);
     }
 

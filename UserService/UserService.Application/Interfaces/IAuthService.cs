@@ -9,7 +9,8 @@ namespace UserService.Application.Interfaces
         Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
         Task<List<ReadUserDto>> GetAllUsers();
         Task<ReadUserDto> GetUserById(string Id);
-        Task<ResultDto> DeleteUser(string Id);
+        Task<bool> DeleteUser(string Id);
+        Task<bool> DeleteUserPermanently(string Id);
         Task<ResultDto> UpdateUser(RegisterDto dto, string Id);
         Task<User> GetUserByEmailAsync(string email);
     }

@@ -93,9 +93,15 @@ namespace UserService.Application.Services
             return user;
         }
 
-        public async Task<ResultDto> DeleteUser(String Id)
+        public async Task<bool> DeleteUser(String Id)
         {
-            var result = await _authRepository.DeleteUserById(Id);
+            var result = await _authRepository.DeleteUser(Id);
+            return result;
+        }
+
+        public async Task<bool> DeleteUserPermanently(String Id)
+        {
+            var result = await _authRepository.DeleteUserPermanently(Id);
             return result;
         }
 
@@ -113,5 +119,7 @@ namespace UserService.Application.Services
 
 
         }
+
+        
     }
 }

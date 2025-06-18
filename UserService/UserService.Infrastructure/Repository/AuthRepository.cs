@@ -84,23 +84,12 @@ namespace UserService.Infrastructure.Repository
             return user.ToReadUserDto();
         }
 
-        public async Task<ResultDto> DeleteUserById(string Id)
+        public async Task<bool> DeleteUser(string Id)
         {
-            var user = await _userManager.FindByIdAsync(Id);
-            var result = await _userManager.DeleteAsync(user);
-            if (!result.Succeeded)
-            {
-                return new ResultDto
-                {
-                    IsSuccess = false,
-                    Errors = new List<string> { "User not found." }
-                };
-            }
-            return new ResultDto
-            {
-                IsSuccess = result.Succeeded,
-                Errors = result.Errors.Select(e => e.Description).ToList()
-            };
+            var user = await _userManager.FindByIdAsync(Id) ?? throw new KeyNotFoundException("User not found.");
+            user.IsDeleted = true;
+            await _userManager.UpdateAsync(user);
+            return true;
         }
 
         public async Task<ResultDto> UpdateUser(string Id, RegisterDto dto)
@@ -124,6 +113,17 @@ namespace UserService.Infrastructure.Repository
                 IsSuccess = result.Succeeded,
                 Errors = result.Errors.Select(e => e.Description).ToList()
             };
+        }
+
+        public async Task<bool> DeleteUserPermanently(string Id)
+        {
+            var user = _userManager.Users.FirstOrDefault(u => u.Id == Id) ?? throw new KeyNotFoundException("User not found.");
+            if (user.IsDeleted)
+            {
+                var result = await _userManager.DeleteAsync(user);
+                return result.Succeeded;
+            }
+            return false;
         }
     }
 }
