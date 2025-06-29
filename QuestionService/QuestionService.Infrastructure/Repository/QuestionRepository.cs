@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using QuestionService.Application.Interfaces.Repository;
-using QuestionService.Domain.Entities;
-using QuestionService.Infrastructure.Persistence;
 
 namespace QuestionService.Infrastructure.Repository
 {
